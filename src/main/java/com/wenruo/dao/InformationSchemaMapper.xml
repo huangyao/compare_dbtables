@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenruo.dao.InformationSchemaMapper">
+
+    <select id="getTableNames" resultType="string">
+        SELECT table_name FROM information_schema.tables
+        WHERE TABLE_SCHEMA!='information_schema'
+        <if test="dbName != null">
+            AND table_schema = #{dbName}
+        </if>
+        ORDER BY table_name ASC;
+    </select>
+
+</mapper>
